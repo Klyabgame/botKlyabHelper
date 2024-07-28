@@ -2,7 +2,7 @@ import express from 'express';
 import { envs } from './config';
 import { OpenAIController} from './presentation/openAI/controller';
 import cors from 'cors';
-import http from 'http';
+import https from 'https';
 
 (()=>{
 
@@ -28,6 +28,6 @@ function main(){
     })
 
     setInterval(() => {
-      http.get(`${envs.WEB_DEPLOY}:${envs.PORT}`);
-  }, 300000); // Cada 5 minutos
+      https.get(`${envs.WEB_DEPLOY}:${envs.PORT}`);
+  },  780000); // Cada 5 minutos
 }
