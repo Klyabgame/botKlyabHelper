@@ -1,15 +1,19 @@
 {
-     "version": 2,
-      "rewrites": [
-        {
-             "source": "app.js",
-             "use": "@vercel/node"
-        }
+    "version": 2,
+    "builds": [
+      {
+        "src": "dist/app.js",
+        "use": "@vercel/node"
+      }
     ],
-    "routes":[
-        {
-            "src": "dist/",
-            "dest": "/"
-        }
-    ]
-}
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/dist/app.js"
+      }
+    ],
+    "scripts": {
+      "build": "npm run start"
+    }
+  }
+  
