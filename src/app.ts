@@ -19,6 +19,10 @@ function main(){
 
     const controller=new OpenAIController();
 
+    app.get('/', (req, res) => {
+      res.send('Bot de Discord está activo.');
+  });
+
     app.post('/api/openAI',controller.postMessageGPT)
 
     
@@ -28,6 +32,18 @@ function main(){
     })
 
     setInterval(() => {
-      https.get(`${envs.WEB_DEPLOY}:${envs.PORT}`);
-  },  780000); // Cada 5 minutos
+    const url = envs.WEB_DEPLOY;  // Reemplaza con la URL de tu aplicación en Render
+    https.get(url, (res) => {
+        console.log(`STATUS: ${res.statusCode}`);
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => {
+            console.log(`BODY: ${chunk}`);
+        });
+        res.on('end', () => {
+            console.log('No more data in response.');
+        });
+    }).on('error', (e) => {
+        console.error(`Error with request: ${e.message}`);
+    });
+    }, 780000); // Cada 13 minutos
 }
