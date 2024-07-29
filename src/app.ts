@@ -18,13 +18,12 @@ function main(){
 
     const controller=new OpenAIController();
 
-  app.get('/', (req, res) => {
+    app.get('/', (req, res) => {
       res.send('Bot de Discord está activo.');
   });
 
     app.post('/api/openAI',controller.postMessageGPT)
 
-    
 
     app.listen(envs.PORT,()=>{
       console.log(`APP running on port ${envs.PORT}`);
