@@ -12,9 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateOpenAIResponse = void 0;
 const config_1 = require("../config");
 const generateOpenAIResponse = (contentMessage) => __awaiter(void 0, void 0, void 0, function* () {
-    if (contentMessage.toLowerCase() === 'testeo') {
-        return 'ok';
-    }
     try {
         const completion = yield config_1.openai.chat.completions.create({
             messages: [

@@ -10,11 +10,7 @@ export class OpenAIController {
 
             try {
                 const reply = await generateOpenAIResponse(contentMessage);
-                if (reply) {
-                    res.status(200).json({ message: reply });
-                } else {
-                    res.status(500).json({ message: 'No se pudo procesar la solicitud.' });
-                }
+                res.json({ response: reply });
             } catch (error) {
                 res.status(500).json({ error: 'Error al procesar tu solicitud.' });
             }

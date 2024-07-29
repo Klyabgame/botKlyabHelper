@@ -3,10 +3,6 @@ import { openai } from "../config";
 
 export const generateOpenAIResponse = async (contentMessage: string) => {
 
-    if (contentMessage.toLowerCase() === 'testeo') {
-        return 'ok'
-    }
-
     try {
         const completion = await openai.chat.completions.create({
             messages: [

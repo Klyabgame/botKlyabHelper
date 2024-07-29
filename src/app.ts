@@ -24,6 +24,10 @@ function main(){
 
     app.post('/api/openAI',controller.postMessageGPT)
 
+    app.post('/api/test', (req, res) => {
+      res.status(200).json({response:'testeo data.'});
+  });
+
 
     app.listen(envs.PORT,()=>{
       console.log(`APP running on port ${envs.PORT}`);

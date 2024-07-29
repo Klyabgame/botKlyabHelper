@@ -20,6 +20,9 @@ function main() {
         res.send('Bot de Discord está activo.');
     });
     app.post('/api/openAI', controller.postMessageGPT);
+    app.post('/api/test', (req, res) => {
+        res.status(200).json({ response: 'testeo data.' });
+    });
     app.listen(config_1.envs.PORT, () => {
         console.log(`APP running on port ${config_1.envs.PORT}`);
     });
