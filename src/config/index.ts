@@ -1,3 +1,3 @@
 export * from './envs';
 export * from './openAIClient';
-export * from './discordClient';
+export * from './discordClient'

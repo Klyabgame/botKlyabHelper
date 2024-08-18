@@ -9,23 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("../config");
+exports.discordChanelMessage = void 0;
 const openAIMessage_configuration_1 = require("./openAIMessage.configuration");
-config_1.client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, function* () {
-    if (message.author.bot)
-        return;
-    // Check if the bot is mentioned
-    if (message.mentions.has(config_1.client.user)) {
-        try {
-            // Extract the message content excluding the bot mention
-            const content = message.content.replace(/<@!?[0-9]+>/g, '').trim();
-            const reply = yield (0, openAIMessage_configuration_1.generateOpenAIResponse)(content);
-            if (reply) {
-                message.channel.send(reply);
+const discordChanelMessage = (client) => {
+    client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, function* () {
+        if (message.author.bot)
+            return;
+        // Check if the bot is mentioned
+        if (message.mentions.has(client.user)) {
+            try {
+                // Extract the message content excluding the bot mention
+                const content = message.content.replace(/<@!?[0-9]+>/g, '').trim();
+                const reply = yield (0, openAIMessage_configuration_1.generateOpenAIResponse)(content);
+                if (reply) {
+                    message.channel.send(reply);
+                }
+            }
+            catch (error) {
+                message.channel.send('Hubo un error al procesar tu solicitud.');
             }
         }
-        catch (error) {
-            message.channel.send('Hubo un error al procesar tu solicitud.');
-        }
-    }
-}));
+    }));
+};
+exports.discordChanelMessage = discordChanelMessage;
